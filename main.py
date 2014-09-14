@@ -82,7 +82,7 @@ def message_queue():
   results['private_key']=private
   results['cost']=cost
   results=json.dumps(results)
-  response=make_response(str("test"), 200)
+  response=make_response(str(results), 200)
   response.headers['Access-Control-Allow-Origin']= '*'
   #response.headers['Access-Control-Allow-Origin']= 'http://www.chainscribe.com'
   return response
