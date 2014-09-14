@@ -60,11 +60,7 @@ def messages_query(lastn=None):
 @app.route('/messages/queue', methods=['POST']) #WORDS
 @crossdomain(origin='*')
 def message_queue():
-  print request.data
-  jsoninput=json.loads(request.data)
-  print ""
-  print jsoninput
-  text=str(jsoninput['text'])
+  text=str(request.form['text'])
 
   r=addresses.generate_secure_pair()
   public=r['public_address']
