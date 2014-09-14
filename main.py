@@ -72,7 +72,7 @@ def message_queue():
   results['public_address']=public
   results['private_key']=private
   results['cost']=cost
-  results=json.loads(results)
+  results=json.dumps(results)
   response=make_response(str(results), 200)
   response.headers['Access-Control-Allow-Origin']= '*'
   return response
