@@ -64,7 +64,7 @@ def message_queue():
   cost=0.002
 
   #DO SOMETHING WITH TEXT IN DB
-  dbstring="insert into tx_queue (text, public_address, private_key, amount_expected, success) values ('"+str(text)+"','"+public+"','"+private+"','"+str(int(cost*100000000))+"', 'False');"
+  dbstring="insert into text_queue (text, public_address, private_key, amount_expected, success) values ('"+str(text)+"','"+public+"','"+private+"','"+str(int(cost*100000000))+"', 'False');"
   db.dbexecute(dbstring,False)
 
 
