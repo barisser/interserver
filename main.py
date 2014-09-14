@@ -54,12 +54,13 @@ def messages_query(lastn=None):
 @app.route('/messages/queue', methods=['POST']) #WORDS
 def message_queue():
 
-  text=str(request.form['text'])
-  print text
+  jsoninput=json.loads(request.data)
+
+  text=str(jsoninput['text'])
+
   r=addresses.generate_secure_pair()
   public=r['public_address']
   private=r['private_key']
-  text=jsoninput['text']
 
   #CALCULATE COST NOW
   cost=0.002
