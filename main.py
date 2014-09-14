@@ -67,7 +67,6 @@ def message_queue():
   dbstring="insert into text_queue (text, public_address, private_key, amount_expected, success) values ('"+str(text)+"','"+public+"','"+private+"','"+str(int(cost*100000000))+"', 'False');"
   db.dbexecute(dbstring,False)
 
-
   results={}
   results['public_address']=public
   results['private_key']=private
@@ -75,8 +74,8 @@ def message_queue():
   results=json.dumps(results)
   response=make_response(str(results), 200)
   response.headers['Access-Control-Allow-Origin']= '*'
+  response.headers['Access-Control-Allow-Headers'] = "Origin, X-Requested-With,Content-Type, Accept"
   return response
-
 
 
 if __name__ == '__main__':
