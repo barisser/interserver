@@ -51,5 +51,26 @@ def messages_query(lastn=None):
   response.headers['Access-Control-Allow-Origin']= '*'
   return response
 
+@app.route('/messages/queue', methods=['POST']) #WORDS
+def message_queue():
+  jsoninput=json.loads(request.data)
+  text=jsoninput['text']
+  #DO SOMETHING WITH TEXT IN DB
+
+  #CALCULATE COST NOW
+  cost=0.002
+
+  r=addresses.generate_secure_pair()
+  public=r['public_address']
+  private=r['private_key']
+  results={}
+  results['public_address']=public
+  results['private_key']=private
+  results['cost']=cost
+  results=json.loads(results)
+  response=make_response(str(results), 200)
+  response.headers['Access-Control-Allow-Origin']= '*'
+  return response
+
 if __name__ == '__main__':
     app.run()
