@@ -6,7 +6,7 @@ import db
 import json
 app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS']=True
-
+import addresses
 
 @app.route('/')
 def something():
