@@ -75,8 +75,7 @@ def message_queue():
   results['cost']=cost
   results=json.dumps(results)
   response=make_response(str(results), 200)
-  response.headers['Access-Control-Allow-Origin']= '*'
-  response.headers['Access-Control-Allow-Headers'] = "Origin, X-Requested-With,Content-Type, Accept"
+  response.headers['Access-Control-Allow-Origin']= 'http://www.chainscribe.com'
   return response
 
 
