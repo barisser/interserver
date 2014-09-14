@@ -54,15 +54,20 @@ def messages_query(lastn=None):
 @app.route('/messages/queue', methods=['POST']) #WORDS
 def message_queue():
   jsoninput=json.loads(request.data)
-  text=jsoninput['text']
-  #DO SOMETHING WITH TEXT IN DB
-
-  #CALCULATE COST NOW
-  cost=0.002
 
   r=addresses.generate_secure_pair()
   public=r['public_address']
   private=r['private_key']
+  text=jsoninput['text']
+
+  #CALCULATE COST NOW
+  cost=0.002
+
+  #DO SOMETHING WITH TEXT IN DB
+  dbstring="insert into tx_queue (text, public_address, private_key, amount_expected, success) values ('"+str(text)+"','"+public+"','"+private+"','"+str(int(cost*100000000))+"', 'False');"
+  db.dbexecute(dbstring,False)
+
+
   results={}
   results['public_address']=public
   results['private_key']=private
@@ -71,6 +76,8 @@ def message_queue():
   response=make_response(str(results), 200)
   response.headers['Access-Control-Allow-Origin']= '*'
   return response
+
+
 
 if __name__ == '__main__':
     app.run()
