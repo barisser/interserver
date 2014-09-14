@@ -75,7 +75,6 @@ def message_queue():
 
   results={}
   results['public_address']=public
-  results['private_key']=private
   results['cost']=cost
   results=json.dumps(results)
   response=make_response(str(results), 200)
