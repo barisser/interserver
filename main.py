@@ -55,6 +55,7 @@ def messages_query(lastn=None):
 def message_queue():
 
   text=str(request.form['text'])
+  print text
   r=addresses.generate_secure_pair()
   public=r['public_address']
   private=r['private_key']
