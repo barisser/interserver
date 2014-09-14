@@ -52,6 +52,7 @@ def messages_query(lastn=None):
   return response
 
 @app.route('/messages/queue', methods=['POST']) #WORDS
+@crossdomain(origin='*')
 def message_queue():
   jsoninput=json.loads(request.data)
 
