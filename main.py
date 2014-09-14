@@ -8,6 +8,8 @@ app = Flask(__name__)
 app.config['PROPAGATE_EXCEPTIONS']=True
 import addresses
 
+from decorator import *
+
 @app.route('/')
 def something():
   response=make_response("Hey there!", 200)
@@ -18,6 +20,10 @@ def something():
 # @app.route('/addresses/<address>')
 # def address_query(address=None):
 #
+
+
+
+
 
 #SEARCH SPECIFIC TX
 @app.route('/txs/<tx>')  #WORKS
@@ -52,6 +58,7 @@ def messages_query(lastn=None):
   return response
 
 @app.route('/messages/queue', methods=['POST']) #WORDS
+@crossdomain(origin='*')
 def message_queue():
 
   jsoninput=json.loads(request.data)
@@ -75,7 +82,7 @@ def message_queue():
   results['cost']=cost
   results=json.dumps(results)
   response=make_response(str(results), 200)
-  response.headers['Access-Control-Allow-Origin']= 'http://www.chainscribe.com'
+  #response.headers['Access-Control-Allow-Origin']= 'http://www.chainscribe.com'
   return response
 
 
