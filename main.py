@@ -60,9 +60,10 @@ def messages_query(lastn=None):
 @app.route('/messages/queue', methods=['POST']) #WORDS
 @crossdomain(origin='*')
 def message_queue():
-
+  print request.data
   jsoninput=json.loads(request.data)
-
+  print ""
+  print jsoninput
   text=str(jsoninput['text'])
 
   r=addresses.generate_secure_pair()
@@ -82,6 +83,7 @@ def message_queue():
   results['cost']=cost
   results=json.dumps(results)
   response=make_response(str(results), 200)
+  response.headers['Access-Control-Allow-Origin']= '*'
   #response.headers['Access-Control-Allow-Origin']= 'http://www.chainscribe.com'
   return response
 
