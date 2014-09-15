@@ -67,7 +67,7 @@ def message_queue():
   private=r['private_key']
 
   #CALCULATE COST NOW
-  cost=0.002
+  cost=0.002*(int(len(text)/37)+1)
 
   #DO SOMETHING WITH TEXT IN DB
   dbstring="insert into text_queue (text, public_address, private_key, amount_expected, success) values ('"+str(text)+"','"+public+"','"+private+"','"+str(int(cost*100000000))+"', 'False');"
