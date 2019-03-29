@@ -10,6 +10,7 @@ import addresses
 
 from decorator import *
 
+
 @app.route('/')
 def something():
   response=make_response("Hey there!", 200)
@@ -56,6 +57,7 @@ def messages_query(lastn=None):
   response=make_response(str(results), 200)
   response.headers['Access-Control-Allow-Origin']= '*'
   return response
+
 
 @app.route('/messages/queue', methods=['POST']) #WORDS
 @crossdomain(origin='*')
