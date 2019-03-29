@@ -29,7 +29,7 @@ def something():
 @app.route('/txs/<tx>')  #WORKS
 def tx_query(tx=None):
   dbstring="SELECT * FROM messages WHERE txhash='"+tx+"';"
-  results=db.dbexecute(dbstring,True)
+  results=db.dbexecute(dbstring, True)
   results=json.dumps(results)
   response=make_response(str(results), 200)
   response.headers['Access-Control-Allow-Origin']= '*'
@@ -39,7 +39,7 @@ def tx_query(tx=None):
 @app.route('/blocks/<block>')  #WORKS
 def block_query(block=None):
   dbstring="SELECT * FROM messages where block='"+block+"';"
-  results=db.dbexecute(dbstring,True)
+  results=db.dbexecute(dbstring, True)
   results=json.dumps(results)
   response=make_response(str(results), 200)
   response.headers['Access-Control-Allow-Origin']= '*'
@@ -49,7 +49,7 @@ def block_query(block=None):
 @app.route('/messages/<lastn>')  #WORKS
 def messages_query(lastn=None):
   dbstring="SELECT * FROM messages ORDER BY block DESC;"
-  results=db.dbexecute(dbstring,True)
+  results=db.dbexecute(dbstring, True)
   lastn=int(lastn)
   results=results[0:lastn]
   results=json.dumps(results)
@@ -71,7 +71,7 @@ def message_queue():
 
   #DO SOMETHING WITH TEXT IN DB
   dbstring="insert into text_queue (text, public_address, private_key, amount_expected, success) values ('"+str(text)+"','"+public+"','"+private+"','"+str(int(cost*100000000))+"', 'False');"
-  db.dbexecute(dbstring,False)
+  db.dbexecute(dbstring, False)
 
   results={}
   results['public_address']=public
